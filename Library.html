@@ -8,26 +8,105 @@
 </head>
 <body>
 <div class="bookInformation">
-  <!-- Create form for user input -->
-  <!-- Book name -->
-  <!-- Author -->
-  <!-- Pages -->
-  <!-- Read  -->
+
+<form id="bookAddForm" onsubmit="return addBookToLibrary()">
+  <label for="Title">Book Title</label>
+  <input type="text" name="Title">
+  <label for="Author">Author</label>
+  <input type="text" name="Author">
+  <label for="Pages">Pages</label>
+  <input type="text" name="Pages">
+  <label for="Read">Read</label>
+  <input type="checkbox" name="Read">
+  <input type="submit">
+</form>
+</div>
+
+<div class="bookGallery">
+
+
 </div>
 
 <script>
 let myLibrary = [];
 
-function Book(title,author,pages,read){
+function book(title,author,pages,read){
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
 }
 
-function addBookToLibrary(){
-  //Take user input here
+function addBookToLibrary() {
+  //Collecting User Input From Form
+  console.log("Library Book Submitted")
+  var addTitle = document.forms["bookAddForm"]["Title"].value;
+  var addAuthor = document.forms["bookAddForm"]["Author"].value;
+  var addPages = document.forms["bookAddForm"]["Pages"].value;
+  var Read = document.forms["bookAddForm"]["Read"].value;
+
+  // Creates new book and adds it to myLibrary
+  let newBook = new book(addTitle, addAuthor, addPages, Read)
+  // console.log(newBook)
+  myLibrary.push(newBook)
+  //console.table(myLibrary)
+
+  displayBooks(newBook)
+  console.table(myLibrary)
+
+  const librarySave = JSON.stringify(myLibrary);
+  console.log(JSON.stringify(myLibrary) + "Json")
+  localStorage.setItem("LocalSavedBooks", librarySave);
+  return false;
 }
+
+
+
+const savedBooks = JSON.parse(localStorage.getItem("LocalSavedBooks"))
+
+//More effiecient way to loop through both?
+savedBooks.forEach(item => myLibrary.push(item));
+savedBooks.forEach(item => displayBooks(item));
+
+
+
+function displayBooks(item){
+//console.log("Book block")
+const bookGallery = document.querySelector('.bookGallery');
+const bookBlock = document.createElement('div');
+const bookBlockLine1 = document.createElement('div')
+const bookBlockLine2 = document.createElement('div')
+const bookBlockLine3 = document.createElement('div')
+const bookBlockLine4 = document.createElement('div')
+
+bookBlock.classList.add('bookBlock');
+bookBlock.classList.add('bookBlock' + savedBooks.indexOf(item))
+
+bookBlockLine1.textContent += item.title
+bookBlockLine2.textContent += item.author
+bookBlockLine3.textContent += item.pages
+
+function itemReadText(item){
+if (item === "on"){
+ message = "Read"
+ return message
+}
+else{
+  message = "Not Read Yet"
+return message}
+}
+bookBlockLine4.textContent += itemReadText(item.read)
+
+bookGallery.appendChild(bookBlock);
+bookBlock.appendChild(bookBlockLine1)
+bookBlock.appendChild(bookBlockLine2)
+bookBlock.appendChild(bookBlockLine3)
+bookBlock.appendChild(bookBlockLine4)
+//console.log("End of Book block")
+};
+//Need to make text append to individual classes within each div
+console.table(myLibrary)
+// Display books
 
 </script>
 
