@@ -47,6 +47,7 @@
 
   <script>
     let myLibrary = [];
+    let i = 0;
 
     //book object constructor
     function book(title, author, pages, read) {
@@ -99,20 +100,24 @@
       const deleteBook = document.createElement('div')
       const readBook = document.createElement('div')
 
+      i = i + 1
       bookBlock.classList.add('bookBlock');
+      bookBlock.classList.add('bookBlock' + i);
       bookBlockLine1.classList.add('bookBlockLine1');
       bookBlockLine2.classList.add('bookBlockLine2');
       bookBlockLine3.classList.add('bookBlockLine3');
       bookBlockLine4.classList.add('bookBlockLine4');
       deleteBook.classList.add('deleteBook');
+      deleteBook.addEventListener('click', deleteBookfromGallery);
       readBook.classList.add('readBook');
 
       //bookBlock.classList.add('bookBlock' + savedBooks.indexOf(item))
 
-      bookBlockLine1.textContent += item.title
-      bookBlockLine2.textContent += "Author: " + item.author
-      bookBlockLine3.textContent += "Pages: " + item.pages
-      bookBlockLine4.textContent += item.read
+      bookBlockLine1.textContent = item.title
+      bookBlockLine2.textContent = "Author: " + item.author
+      bookBlockLine3.textContent = "Pages: " + item.pages
+      bookBlockLine4.textContent = item.read
+      deleteBook.innerHTML = '<i class="fas fa-trash-alt"></i>';
 
       bookGallery.appendChild(bookBlock);
       bookBlock.appendChild(bookBlockLine1)
@@ -124,9 +129,11 @@
     };
 
     console.table(myLibrary)
-    console.table(localStorage)
+    //console.table(localStorage)
 
     //Function to open and close form
+const deleteBook = document.querySelector('.deleteBook');
+
 function formToggle() {
   if (document.querySelector(".bookInformation").style.display === "none") {
     document.querySelector(".bookInformation").style.display = "inline";
@@ -136,7 +143,17 @@ function formToggle() {
     document.querySelector(".bookInformation").style.display = "none";
     document.querySelector("body").style.background = "white";
   }
+};
+
+function deleteBookfromGallery(e){
+  // if (e.target.parentNode === )
+
+  console.log(e.target.parentNode);
+
 }
+
+
+
 
   </script>
 
