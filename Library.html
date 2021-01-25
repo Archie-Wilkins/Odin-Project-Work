@@ -13,7 +13,8 @@
 </head>
 
 <body>
-    <div class="addButton" onclick="formToggle()"><i class="fas fa-times-circle"></i></div>
+    <div class="addButton" onclick="formToggle()"><i class="fas fa-plus-circle"></i></div>
+
   <div class="bookInformation">
 
     <form id="bookAddForm" onsubmit="return addBookToLibrary()">
@@ -95,13 +96,22 @@
       const bookBlockLine2 = document.createElement('div')
       const bookBlockLine3 = document.createElement('div')
       const bookBlockLine4 = document.createElement('div')
+      const deleteBook = document.createElement('div')
+      const readBook = document.createElement('div')
 
       bookBlock.classList.add('bookBlock');
+      bookBlockLine1.classList.add('bookBlockLine1');
+      bookBlockLine2.classList.add('bookBlockLine2');
+      bookBlockLine3.classList.add('bookBlockLine3');
+      bookBlockLine4.classList.add('bookBlockLine4');
+      deleteBook.classList.add('deleteBook');
+      readBook.classList.add('readBook');
+
       //bookBlock.classList.add('bookBlock' + savedBooks.indexOf(item))
 
       bookBlockLine1.textContent += item.title
-      bookBlockLine2.textContent += item.author
-      bookBlockLine3.textContent += item.pages
+      bookBlockLine2.textContent += "Author: " + item.author
+      bookBlockLine3.textContent += "Pages: " + item.pages
       bookBlockLine4.textContent += item.read
 
       bookGallery.appendChild(bookBlock);
@@ -109,15 +119,17 @@
       bookBlock.appendChild(bookBlockLine2)
       bookBlock.appendChild(bookBlockLine3)
       bookBlock.appendChild(bookBlockLine4)
+      bookBlock.appendChild(deleteBook)
+      bookBlock.appendChild(readBook)
     };
 
-    //console.table(myLibrary)
-    //console.table(localStorage)
+    console.table(myLibrary)
+    console.table(localStorage)
 
     //Function to open and close form
 function formToggle() {
   if (document.querySelector(".bookInformation").style.display === "none") {
-    document.querySelector(".bookInformation").style.display = "block";
+    document.querySelector(".bookInformation").style.display = "inline";
     document.querySelector("body").style.background = "RGBA(0,0,0,0.8)";
   }
   else if(document.querySelector(".bookInformation").style.display !== "none"){
@@ -125,6 +137,7 @@ function formToggle() {
     document.querySelector("body").style.background = "white";
   }
 }
+
   </script>
 
 
