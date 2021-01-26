@@ -65,7 +65,7 @@
       var addAuthor = document.forms["bookAddForm"]["Author"].value;
       var addPages = document.forms["bookAddForm"]["Pages"].value;
       var Read = document.forms["bookAddForm"]["Read"].value;
-      document.getElementById("bookAddForm").reset();
+      //document.getElementById("bookAddForm").reset();
       // Creates new book and adds it to myLibrary
       let newBook = new book(addTitle, addAuthor, addPages, Read)
       // console.log(newBook)
@@ -145,12 +145,12 @@ function formToggle() {
   }
 };
 
-function deleteBookfromGallery(e){
-  // if (e.target.parentNode === )
-
-  console.log(e.target.parentNode);
-
-}
+//function deleteBookfromGallery(){
+//  // if (e.target.parentNode === )
+//
+//  console.log(e.target.parentNode);
+//
+//}
 
 
 
