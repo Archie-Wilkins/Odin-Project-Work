@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>The Library</title>
+  <script src="https://kit.fontawesome.com/e70f79af57.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+  <div class="addButton" onclick="formToggle()"><i class="fas fa-plus-circle"></i></div>
+
+<div class="bookInformation">
+
+  <form id="bookAddForm" onsubmit="return addBookToLibrary()">
+    <div class="closeButton" onclick="formToggle()"><i class="fas fa-times-circle"></i></div>
+    <h1>Add Book</h1>
+    <label for="Title">Book Title</label>
+    <input type="text" name="Title">
+    <label for="Author">Author</label>
+    <input type="text" name="Author">
+    <label for="Pages">Pages</label>
+    <input type="text" name="Pages">
+    <div class="radioButtons">
+      <div class="labelwithInput">
+      <label for="Read">Read</label>
+      <input type="radio" name="Read" value="Read">
+    </div>
+    <div class="labelwithInput">
+      <label for="Read">Not Read Yet</label>
+      <input type="radio" name="Read" value="Not Read Yet">
+    </div>
+  </div>
+    <input type="submit">
+  </form>
+</div>
+
+<div class="bookGallery">
+
+
+
+</body>
+<script>
+let myLibrary = [];
+
+function book(title, author, pages, read) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
+}
+
+book.prototype.readBook = function() {
+  if (this.read === "Read"){
+    this.read = "Not Read"
+  }else{
+    this.read = "Read"
+  }
+}
+
+book.prototype.deleteBook = function() {
+  //Delete function here or remove from array
+}
+
+
+</script>
+</html>
