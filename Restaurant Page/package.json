@@ -1,0 +1,14 @@
+{
+  "name": "restaurant-page",
+  "version": "1.0.0",
+  "description": "Restaurant page made primarily using JavaScript to demonstrate using npm, exports and imports. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Archie Wilkins",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack-cli": "^4.4.0"
+  }
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <title>Tic Tac Toe</title>
+</head>
+
+<body>
+
+  <div id="board">
+
+  </div>
+
+  <script>
+    const gameboard = {
+      position0: ["", 0],
+      position1: ["", 1],
+      position2: ["", 2],
+      position3: ["", 3],
+      position4: ["", 4],
+      position5: ["", 5],
+      position6: ["", 6],
+      position7: ["", 7],
+      position8: ["", 8],
+
+    };
+    const winConditions = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    console.log(winConditions[0])
+
+    const circlePositions = [];
+    const crossPositions = [];
+
+    function winCheck() {
+      for (let key in gameboard) {
+        if (gameboard[key][0] === "") {
+          break;
+        } else {
+          console.log("draw")
+        }
+
+
+        if (circlePositions === winConditions[0]) {
+          console.log("Circles Win")
+        }
+      }
+    }
+
+
+    const player = (name, symbol) => {
+      //player functions here
+    };
+
+    const Player1 = player('Me', 'X');
+    const Player2 = player('You', 'O');
+
+    //for (items in gameboard){
+
+
+    let i = 0;
+    for (let key in gameboard) {
+      //console.log(gameboard[key][0]);
+      boardGenerator(gameboard[key][0], gameboard[key][1])
+    }
+
+    //boardGenerator(items);
+    //};
+
+    function boardGenerator(item, data) {
+      const boardSlot = document.createElement('div');
+      const board = document.querySelector('#board');
+      const content = item;
+
+      boardSlot.classList.add('boardslot' + i);
+      boardSlot.classList.add('boardslot');
+      boardSlot.addEventListener('click', playerTurnCounter);
+      boardSlot.setAttribute('data-key', data);
+      boardSlot.textContent = item;
+      i = i + 1;
+
+      board.appendChild(boardSlot);
+    };
+
+
+
+    //Update Object associated with clicked div
+    function addSymbol(e) {
+      //console.log("Data key = " + e.target.getAttribute("data-key"));
+      const data = e.target.getAttribute("data-key");
+      //console.log(data)
+
+      for (let key in gameboard) {
+        //console.log("Position value data key= " + gameboard[key][1]);
+        if (gameboard[key][1] === parseInt(data)) {
+          //console.log(gameboard[key][1]);
+          let slot = gameboard[key]
+          //console.log(slot)
+          return slot;
+        };
+      }
+    }
+
+    //Player Counter
+    //(Determines what symbol to use and places it on board)
+    playerTurnCounter = 0
+
+    function playerTurnCounter(e) {
+      slot = addSymbol(e)
+      //console.log(e.target)
+      //console.log(slot)
+      if (slot[0] === "") {
+        if (playerTurnCounter % 2 === 0) {
+          slot[0] = "O"
+          circlePositions.push(slot[1])
+
+        } else {
+          slot[0] = "X"
+          crossPositions.push(slot[1])
+        }
+        //console.log(slot)
+        playerTurnCounter = playerTurnCounter + 1;
+        //console.log(playerTurnCounter)
+        //get board slots
+        e.target.textContent = slot[0];
+      } else {
+        console.log("Can't play there") //Make into DOM message
+      }
+    }
+  </script>
+
+</body>
+
+</html>
